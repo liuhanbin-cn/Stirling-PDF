@@ -31,9 +31,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 import lombok.RequiredArgsConstructor;
 
-import stirling.software.spdf.model.api.SplitPdfBySectionsRequest;
 import stirling.software.common.service.CustomPDFDocumentFactory;
 import stirling.software.common.util.WebResponseUtils;
+import stirling.software.spdf.model.api.SplitPdfBySectionsRequest;
 
 @RestController
 @RequestMapping("/api/v1/general")

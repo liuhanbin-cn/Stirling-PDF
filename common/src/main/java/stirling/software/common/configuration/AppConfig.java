@@ -1,6 +1,5 @@
 package stirling.software.common.configuration;
 
-import com.posthog.java.PostHog;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,12 +46,6 @@ public class AppConfig {
     @Getter
     @Value("${server.port:8080}")
     private String serverPort;
-
-    @Value("${posthog.apiKey")
-    private String posthogApiKey;
-
-    @Value("${posthog.host}")
-    private String posthogHost;
 
     @Bean
     @ConditionalOnProperty(name = "system.customHTMLFiles", havingValue = "true")
@@ -276,13 +269,5 @@ public class AppConfig {
         } catch (Exception e) {
             return "Unknown";
         }
-    }
-
-    @Bean
-    public PostHog postHog() {
-        return new PostHog.Builder(posthogApiKey)
-            .host(posthogHost)
-            .logger(new PostHogLoggerImpl())
-            .build();
     }
 }

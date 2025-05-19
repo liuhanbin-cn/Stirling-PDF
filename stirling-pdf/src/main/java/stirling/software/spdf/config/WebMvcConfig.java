@@ -26,15 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/**")
                 .addResourceLocations(
                     "file:" + InstallationPathConfig.getStaticPath(),
-                    "classpath:/static/",
-                    "classpath:/templates/",
-                    "classpath:/stirling-pdf/",
-                    "classpath:/stirling-pdf/static/",
-                    "classpath:/stirling-pdf/templates/",
-                    "/static/",
-                    "/stirling-pdf/",
-                    "/stirling-pdf/static/",
-                    "/stirling-pdf/templates/"
+                    "classpath:/static/"
                 );
         registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
