@@ -31,6 +31,7 @@ import stirling.software.common.configuration.AppConfig;
 import stirling.software.common.model.ApplicationProperties;
 import stirling.software.proprietary.security.CustomAuthenticationFailureHandler;
 import stirling.software.proprietary.security.CustomAuthenticationSuccessHandler;
+import stirling.software.proprietary.security.CustomLogoutSuccessHandler;
 import stirling.software.proprietary.security.database.repository.JPATokenRepositoryImpl;
 import stirling.software.proprietary.security.database.repository.PersistentLoginRepository;
 import stirling.software.proprietary.security.filter.FirstLoginFilter;
@@ -168,7 +169,7 @@ public class SecurityConfiguration {
                 logout ->
                     logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessHandler(
-                            new stirling.software.proprietary.security.CustomLogoutSuccessHandler(applicationProperties, appConfig))
+                            new CustomLogoutSuccessHandler(applicationProperties, appConfig))
                         .clearAuthentication(true)
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID", "remember-me"));
@@ -293,7 +294,7 @@ public class SecurityConfiguration {
                         });
             }
         } else {
-            log.debug("SAML 2 login is not enabled. Using default.");
+            log.debug("Login is not enabled.");
             http.authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
         }
         return http.build();
